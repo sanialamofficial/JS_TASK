@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Text Analyzer Tool</title>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: white;
+        padding: 40px;
+    }
+
+    .container {
+        width: 600px;
+        margin: auto;
+        background: lightblue;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px whitesmoke;
+    }
+
+    textarea {
+        width:500px;
+        height: 150px;
+        padding: 10px;
+        font-size: 16px;
+        border-radius: 6px;
+        border: 1px solid grey;
+        resize: vertical;
+    }
+
+    button {
+        margin-top: 15px;
+        padding: 10px 20px;
+        border: none;
+        background: blue;
+        color: white;
+        font-size: 16px;
+        border-radius: 6px;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background: green;
+    }
+
+    .result-box {
+        margin-top: 20px;
+        background: silver;
+        padding: 15px;
+        border-radius: 6px;
+        border: 1px solid black;
+    }
+</style>
+
+</head>
+<body>
+
+<div class="container">
+    <h2>Text Analyzer Tool</h2>
+
+    <textarea id="inputText" placeholder="Paste or type your paragraph here..."></textarea>
+    <button id="analyzeBtn">Analyze</button>
+
+    <div class="result-box" id="results"></div>
+</div>
+
+<script>
+    document.getElementById("analyzeBtn").addEventListener("click", function () {
+        let text = document.getElementById("inputText").value;
+
+        if (text.trim() === "") {
+            document.getElementById("results").innerHTML =
+                "<p style='color:red;'>Please enter some text!</p>";
+            return;
+        }
+
+        let charCount = text.length;
+
+        let wordCount = text.trim().split(/\s+/).length;
+
+        let reversedText = text.split("").reverse().join("");
+
+        document.getElementById("results").innerHTML = `
+            <p><strong>Total Characters:</strong> ${charCount}</p>
+            <p><strong>Total Words:</strong> ${wordCount}</p>
+            <p><strong>Reversed Text:</strong></p>
+            <div style="padding:10px; background:#fff; border:1px solid #ccc;">
+                ${reversedText}
+            </div>
+        `;
+    });
+</script>
+
+</body>
+</html>
