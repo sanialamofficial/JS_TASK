@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sani Alam | Portfolio</title>
+    <meta name="author" content="Sani Alam">
+    <meta name="description" content="Portfolio website of Sani Alam, a computer science student seeking internship opportunities.">
+    <meta name="keywords" content="Computer Science, Student, Portfolio, Internship">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            transition: background-color 0.5s, color 0.5s;
+        }
+
+        header, main, footer {
+            padding: 20px;
+            transition: background-color 0.5s, color 0.5s;
+        }
+
+        header img {
+            border-radius: 30%;
+        }
+
+        button.theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 10px 15px;
+            cursor: pointer;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            background-color:green;
+            color: white;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        button.theme-toggle:hover {
+            background-color: darkgreen;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        table, th, td {
+            border: 2px solid;
+            transition: border-color 0.5s;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+    </style>
+</head>
+
+<body>
+
+    <button class="theme-toggle" id="themeToggleBtn">Switch to Dark Mode</button>
+
+    <header><br><br>
+        <img src="c:\Users\MSI\Downloads\WhatsApp Image 2025-10-01 at 20.07.38_9787ba26.jpg" width="200px">
+        <h1>Sani Alam</h1>
+    </header>
+
+    <main>
+
+        <section id="intro">
+            <h2>Introduction</h2>
+            <p>
+                I am a Computer Science student passionate about programming, problem-solving, 
+                and building useful applications. I am currently looking for internship opportunities 
+                to gain real-world experience in software development.
+            </p>
+        </section>
+
+        <section id="education">
+            <h2>Educational Qualifications</h2>
+            <table>
+                <tr>
+                    <th> Degree </th>
+                    <th> Institution </th>
+                    <th> Passing Year </th>
+                    <th> Result </th>
+                </tr>
+                <tr>
+                    <td> BSc in Computer Science & Engineering </td>
+                    <td> American International University of Bangladesh </td>
+                    <td> 2022 – Present </td>
+                    <td> CGPA: 3.20 </td>
+                </tr>
+                <tr>
+                    <td> HSC (Science) </td>
+                    <td> Bonani Bidyaniketon School & College </td>
+                    <td> 2020 </td>
+                    <td> GPA: 5.00 </td>
+                </tr>
+                <tr>
+                    <td> SSC (Science) </td>
+                    <td> National Bangla High School </td>
+                    <td> 2018 </td>
+                    <td> GPA: 5.00 </td>
+                </tr>
+            </table>
+        </section>
+
+        <section>    
+            <h2>Skills</h2>
+            <ul>
+                <li>Computer Network System</li>
+                <li>Computer Troubleshooting</li>
+                <li>MS Word/ Excel/ PowerPoint/ OneNote</li>
+                <li>Web Design</li>
+                <li>C++</li>
+                <li>Java</li>
+                <li>C#</li>
+                <li>Python</li>
+                <li>HTML/CSS/JavaScript/PHP</li>
+            </ul>
+        </section>
+
+        <section>    
+            <h2>Interests</h2>
+            <ul>
+                <li>Artificial Intelligence</li>
+                <li>Cyber Security</li>
+                <li>Computational Linguistics</li>
+                <li>Web Design</li>
+                <li>Data Manipulation</li>
+            </ul>
+        </section>
+
+        <section id="contact">
+            <h2>Contact Me</h2>
+            <form>
+                <label for="name">Your Name:</label><br>
+                <input type="text" id="name" name="name" required><br><br>
+
+                <label for="email">Your Email:</label><br>
+                <input type="email" id="email" name="email" required><br><br>
+
+                <label for="message">Message:</label><br>
+                <textarea id="message" name="message" rows="5" required></textarea><br><br>
+
+                <button type="submit">Send</button>
+                <button type="reset">Reset</button>
+            </form>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Sani Alam. All rights reserved.</p>
+    </footer>
+
+    <script>
+
+    const themeBtn = document.getElementById('themeToggleBtn');
+    let isDarkMode = false;
+
+    themeBtn.addEventListener('click', () => {
+        if (!isDarkMode) {
+            document.body.style.backgroundColor = "black";
+            document.body.style.color = "white";
+            document.querySelector('header').style.backgroundColor = "black";
+            document.querySelector('main').style.backgroundColor = "black";
+            document.querySelector('footer').style.backgroundColor = "black";
+            document.querySelectorAll('table, th, td').forEach(el => {
+                el.style.borderColor = "white";
+            });
+            themeBtn.textContent = "Switch to Light Mode";
+            isDarkMode = true;
+        } else {
+            document.body.style.backgroundColor = "white";
+            document.body.style.color = "black";
+            document.querySelector('header').style.backgroundColor = "white";
+            document.querySelector('main').style.backgroundColor = "white";
+            document.querySelector('footer').style.backgroundColor = "white";
+            document.querySelectorAll('table, th, td').forEach(el => {
+                el.style.borderColor = "black";
+            });
+            themeBtn.textContent = "Switch to Dark Mode";
+            isDarkMode = false;
+        }
+    });
+    </script>
+
+
+</body>
+</html>
