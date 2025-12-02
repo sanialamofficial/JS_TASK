@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Travel Agency Slider</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: white;
+    }
+
+    .slider {
+      position: relative;
+      width: 80%;
+      max-width: 800px;
+      overflow: hidden;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px black;
+    }
+
+    .slider img {
+      width: 100%;
+      display: block;
+    }
+
+    .buttons {
+      position: absolute;
+      top: 50%;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      transform: translateY(-50%);
+      pointer-events: none;
+    }
+
+    .buttons button {
+      background-color:transparent;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      cursor: pointer;
+      pointer-events: all;
+      border-radius: 5px;
+      font-size: 50px;
+      transition: background-color 0.3s;
+    }
+
+    .buttons button:hover {
+      background-color: transparent;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="slider">
+    <img id="mainImage" src="" alt="Travel Destination">
+    <div class="buttons">
+      <button id="preBtn"><</button>
+      <button id="nextBtn">></button>
+    </div>
+  </div>
+
+  <script>
+
+   const images = [
+  'images/download (5).jpeg',
+  'images/download (6).jpeg',
+  'images/download (7).jpeg',
+  'images/images (1).jpeg',
+  'images/images (2).jpeg'
+];
+
+let currentIndex = 0;
+const mainImage = document.getElementById('mainImage');
+
+function showImage(index) {
+  mainImage.src = images[index];
+}
+ 
+showImage(currentIndex);
+
+document.getElementById('nextBtn').addEventListener('click', () => {
+  currentIndex = (currentIndex + 1) % images.length;
+  showImage(currentIndex);
+});
+
+document.getElementById('preBtn').addEventListener('click', () => {
+  currentIndex = (currentIndex - 1 + images.length) % images.length;
+  showImage(currentIndex);
+});
+
+setInterval(() => {
+  currentIndex = (currentIndex + 1) % images.length;
+  showImage(currentIndex);
+}, 3000);
+
+  </script>
+
+</body>
+</html>
