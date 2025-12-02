@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Management System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 30px;
+        }
+
+        input, button {
+            padding: 8px;
+            margin: 5px 0;
+            font-size: 16px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid black;
+            padding: 10px;
+            text-align: center;
+        }
+
+        th {
+            background-color: white;
+        }
+        #addStudentBtn {
+            background-color: blue; 
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s; 
+        }
+
+        #addStudentBtn:hover {
+            background-color: darkgreen; 
+        }
+
+        button.delete-btn {
+            background-color: crimson;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        button.delete-btn:hover {
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Student Management System</h1>
+
+    <label for="name">Name:</label>
+    <input type="text" id="name" placeholder="Enter name">
+
+    <label for="roll">Roll:</label>
+    <input type="text" id="roll" placeholder="Enter roll">
+
+    <label for="department">Department:</label>
+    <input type="text" id="department" placeholder="Enter department">
+
+    <button id="addStudentBtn">Add Student</button>
+
+    <table id="studentTable">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Roll</th>
+                <th>Department</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+        
+        </tbody>
+    </table>
+
+    <script>
+        const nameInput = document.getElementById('name');
+        const rollInput = document.getElementById('roll');
+        const deptInput = document.getElementById('department');
+        const addBtn = document.getElementById('addStudentBtn');
+        const tableBody = document.querySelector('#studentTable tbody');
+
+        addBtn.addEventListener('click', () => {
+            const name = nameInput.value.trim();
+            const roll = rollInput.value.trim();
+            const department = deptInput.value.trim();
+
+            if (name === "" || roll === "" || department === "") {
+                alert("All fields are required!");
+                return;
+            }
+
+    
+            const row = document.createElement('tr');
+
+       
+            const nameCell = document.createElement('td');
+            nameCell.textContent = name;
+            row.appendChild(nameCell);
+
+          
+            const rollCell = document.createElement('td');
+            rollCell.textContent = roll;
+            row.appendChild(rollCell);
+
+            const deptCell = document.createElement('td');
+            deptCell.textContent = department;
+            row.appendChild(deptCell);
+
+            const actionCell = document.createElement('td');
+            const deleteBtn = document.createElement('button');
+            deleteBtn.textContent = "Delete";
+            deleteBtn.className = "delete-btn";
+            deleteBtn.addEventListener('click', () => {
+                tableBody.removeChild(row); 
+            });
+            actionCell.appendChild(deleteBtn);
+            row.appendChild(actionCell);
+
+            tableBody.appendChild(row);
+
+            nameInput.value = "";
+            rollInput.value = "";
+            deptInput.value = "";
+        });
+    </script>
+
+</body>
+</html>
