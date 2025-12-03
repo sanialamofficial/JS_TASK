@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Interactive Portfolio</title>
+
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+        transition: background 0.3s, color 0.3s;
+    }
+
+    body.light {
+        background: white;
+        color: black;
+    }
+
+    body.dark {
+        background: black;
+        color: white;
+    }
+
+    nav {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        padding: 15px;
+        background: royalblue;
+        color: white;
+    }
+
+    nav a {
+        color: white;
+        font-weight: bold;
+        cursor: pointer;
+        text-decoration: none;
+    }
+
+    #themeToggle {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        cursor: pointer;
+        padding: 8px 16px;
+        background:darkgreen;
+        color: white;
+        border-radius: 6px;
+        border: none;
+    }
+
+    section {
+        display: none;
+        padding: 40px;
+        max-width: 800px;
+        margin: auto;
+        animation: fade 0.4s ease-in-out;
+    }
+
+    @keyframes fade {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+
+    #greeting {
+        margin-top: 20px;
+        font-size: 24px;
+        text-align: center;
+        font-weight: bold;
+    }
+
+    /* Contact Form */
+    input, textarea {
+        width: 100%;
+        padding: 10px;
+        margin: 8px 0;
+        border-radius: 5px;
+        border: 1px solid black;
+        font-size: 16px;
+    }
+
+    button {
+        padding: 10px 20px;
+        background: green;
+        border: none;
+        color: white;
+        font-size: 16px;
+        cursor: pointer;
+        border-radius: 5px;
+        margin-top: 10px;
+    }
+
+    .error {
+        color: red;
+        font-size: 14px;
+        margin-top: -5px;
+        margin-bottom: 10px;
+    }
+</style>
+</head>
+<body class="light">
+
+<button id="themeToggle">Switch Theme</button>
+
+<nav>
+    <a data-target="about">About</a>
+    <a data-target="projects">Projects</a>
+    <a data-target="contact">Contact</a>
+</nav>
+
+<div id="greeting"></div>
+
+<section id="about">
+    <h2>About Me</h2>
+    <p>Hi! I'm a passionate student from AIUB preparing for an internship. I love building interactive websites and learning new technologies.Currently i am studing Computer Science</p>
+</section>
+
+<section id="projects">
+    <h2>Projects</h2>
+    <ul>
+        <li>Hospital Management System</li>
+        <li>Student Management System</li>
+        <li>Portfolio Website</li>
+        <li>ATM Management system</li>
+    </ul>
+</section>
+
+<section id="contact">
+    <h2>Contact Me</h2>
+
+    <form id="contactForm">
+        <input type="text" id="name" placeholder="Full Name">
+        <div id="nameError" class="error"></div>
+
+        <input type="text" id="email" placeholder="Email">
+        <div id="emailError" class="error"></div>
+
+        <textarea id="message" rows="5" placeholder="Message (min 10 characters)"></textarea>
+        <div id="messageError" class="error"></div>
+
+        <button type="submit">Send Message</button>
+    </form>
+</section>
+
+<script>
+const toggleBtn = document.getElementById("themeToggle");
+toggleBtn.addEventListener("click", () => {
+    document.body.classList.toggle("dark");
+    document.body.classList.toggle("light");
+
+    toggleBtn.textContent =
+        document.body.classList.contains("dark") ? "Light Mode" : "Dark Mode";
+});
+
+function updateGreeting() {
+    const hour = new Date().getHours();
+    const greeting = document.getElementById("greeting");
+
+    if (hour < 12) greeting.textContent = "Good Morning!";
+    else if (hour < 18) greeting.textContent = "Good Afternoon!";
+    else greeting.textContent = "Good Evening!";
+}
+
+updateGreeting();
+
+const links = document.querySelectorAll("nav a");
+const sections = document.querySelectorAll("section");
+
+function showSection(id) {
+    sections.forEach(sec => sec.style.display = "none");
+    document.getElementById(id).style.display = "block";
+}
+
+links.forEach(link => {
+    link.addEventListener("click", () => {
+        showSection(link.dataset.target);
+    });
+});
+
+showSection("about");
+
+
+document.getElementById("contactForm").addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    let name = document.getElementById("name").value.trim();
+    let email = document.getElementById("email").value.trim();
+    let message = document.getElementById("message").value.trim();
+
+    let nameError = document.getElementById("nameError");
+    let emailError = document.getElementById("emailError");
+    let messageError = document.getElementById("messageError");
+
+    let valid = true;
+
+    if (name === "") {
+        nameError.textContent = "Name cannot be empty.";
+        valid = false;
+    } else {
+        nameError.textContent = "";
+    }
+
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailPattern.test(email)) {
+        emailError.textContent = "Enter a valid email address.";
+        valid = false;
+    } else {
+        emailError.textContent = "";
+    }
+
+    if (message.length < 10) {
+        messageError.textContent = "Message must be at least 10 characters.";
+        valid = false;
+    } else {
+        messageError.textContent = "";
+    }
+
+    if (valid) {
+        alert("Message Sent Successfully!");
+        document.getElementById("contactForm").reset();
+    }
+});
+</script>
+
+</body>
+</html>
